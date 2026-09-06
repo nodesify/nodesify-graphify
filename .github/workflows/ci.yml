@@ -58,6 +58,8 @@ jobs:
           key: ${{ hashFiles('**/Cargo.lock') }}
       - name: Install dependencies
         run: cd packages/graphify-cli && npm install --install-strategy=nested
+      - name: Check @napi-rs/cli version guard
+        run: node scripts/check-napi-version.mjs
       - name: Build native module
         env:
           NAPI_RS_CLI_VERSION: '2.18.4'
